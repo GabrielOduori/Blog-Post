@@ -12,9 +12,21 @@ def index():
     Homepage 
 
     '''
+
     quotes = get_quote()
 
-    return render_template('index.html', quotes = quotes)
+
+        form_post = PostForm()
+    if form_post.validate_on_submit():
+        post = Post(body =form_post.body.data,
+                    author = current_user,
+                    category = form_post.category.data)
+        db.session.add(post)
+        db.session.commit()
+        return redirect(url_for('.index'))
+    posts = Post.query.order_by(Post.timestamp.desc()).all()
+    return render_template('index.html', form_post = form_post, posts = posts, quotes = quotes)
+
 
 
 @main.route('/info')
