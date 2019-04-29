@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Bloggy Blogg!</h1>
+          <p>This is your awesome  blogpost.</p>
+        </div>
+      </div>
+
+
+    <div class="container">
+      <h3>Random Quotes</h3>
+
+     
+      <article class="row">
+          {% for quote in quotes %}
+          <blockquote class="ten columns centered">
+            <p>{{quote.quote}}</p>
+            <footer class="cite">
+              &mdash; {{quote.author}}
+            </footer>
+          </blockquote>
+          <footer>
+            <p>
+            <a href="{{quote.permalink}}" target="_blank">Quote home</a>
+            </p>
+          </footer>
+        </article>
+      {% endfor %}
+
+    </div>
+{% endblock %}
