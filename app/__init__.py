@@ -29,10 +29,10 @@ def create_app(config_name):
     #Registering Blueprints
     from app.auth import auth as auth_blueprint
     from app.main import main as main_blueprint
-    from app.blogs import main as blogs_blueprint
+    from app.blogs import blogs as blogs_blueprint
     app.register_blueprint(main_blueprint)
     app.register_blueprint(auth_blueprint,url_prefix='/auth')
-    app.register_blueprint(blogs_blueprint)
+    app.register_blueprint(blogs_blueprint, url_prefix = '/blog')
     
     
     return app
