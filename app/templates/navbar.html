@@ -1,24 +1,20 @@
+<div>
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <a class="nav-link"><a href="{{ url_for('main.index')}}">Home</a>
+        <a class="nav-link"><a href="{{ url_for('main.info')}}">About Us</a>
+        {% if current_user.is_authenticated %}
+        
+        <a class="nav-link"><a href="{{url_for('auth.account')}}">Account</a>
+        <a class="nav-link"><a href="{{url_for('blogs.create_post')}}">Create Post</a>
+        <a class="nav-link"><a href="{{url_for('auth.logout')}}">Log Out</a>
 
-<div class="container">
-
-<ul class="nav" style="background-color:aquamarine">
-    <div>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('main.index') }}">Home</a>
-          <a class="nav-link" href="{{ url_for('main.info') }}">About Us</a>
-
-          {% if current_user.is_authenticated %}
-          <a class="nav-link"><a href="{{url_for('auth.logout')}}">Log Out</a>
-          <a class="nav-link"><a href="{{url_for('auth.account')}}">Account</a>
-          <a class="nav-link"><a href="#">Create Post</a></li>
-
-          {% else %}
-          <a class="nav-link"><a href="{{url_for('auth.login')}}">Log In</a>
-          <a class="nav-link"><a href="{{url_for('auth.register')}}">Register</a>
-          {% endif %}
-        </div>
-
-      </ul> 
-
-
+        {% else %}
+        <a class="nav-link"><a href="{{url_for('auth.login')}}">Log In</a>
+        <a class="nav-link"><a href="{{url_for('auth.register')}}">Register</a>
+        {% endif %}
+          <form class="form-inline my-2 my-lg-0 navbar-right" >
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+      </nav>
     </div>
