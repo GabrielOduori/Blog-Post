@@ -25,13 +25,13 @@ def index():
 @main.route('/info')
 def info():
     '''
-    Information page
+    Infor page
     '''
     return render_template('info.html')
 
 
 
-# Comenst view
+# Comments.
 
 @main.route('/user/<uname>')
 def profile(uname):
