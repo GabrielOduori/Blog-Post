@@ -5,7 +5,7 @@ class Config:
     SECRET_KEY='Ghdks87PlsxCvTx'
     QUOTES_URL = 'http://quotes.stormconsultancy.co.uk/random.json'
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:postgres@localhost/bloglist'
-
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
     
 
     
