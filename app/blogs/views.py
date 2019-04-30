@@ -28,7 +28,7 @@ def create_post():
 @blogs.route('blog/<int:post_id>')
 def post(post_id):
     post = Blog.query.get_or_404(post_id)
-    return render_template('user_post.html', title =post.title, date = post.timestamp, post = post)
+    return render_template('blog/post.html', title =post.title, date = post.timestamp, post = post)
 
 # UPDATE
 
