@@ -77,8 +77,8 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
     
-    profile_image = url_for('static',file_name ='profile_pics/'+curent_user.profile_image)
-    return render_template('auth/account.html', profile_image = profile_image, form=form)
+    # profile_image = url_for('static',file_name ='profile_pics/'+current_user.profile_image)
+    return render_template('auth/account.html', form=form) #profile_image = profile_image,
     
 
 #lists of blogs
