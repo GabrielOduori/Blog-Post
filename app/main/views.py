@@ -5,6 +5,7 @@ from flask import render_template, request, redirect, Blueprint
 from app.main import main
 from app.auth import auth
 from app.request import get_quote
+from app.models import Blog
 
 @main.route('/')
 def index():
@@ -15,30 +16,22 @@ def index():
 
     quotes = get_quote()
 
-
-        form_post = PostForm()
-    if form_post.validate_on_submit():
-        post = Post(body =form_post.body.data,
-                    author = current_user,
-                    category = form_post.category.data)
-        db.session.add(post)
-        db.session.commit()
-        return redirect(url_for('.index'))
-    posts = Post.query.order_by(Post.timestamp.desc()).all()
-    return render_template('index.html', form_post = form_post, posts = posts, quotes = quotes)
+    page = request.args.get('page', 1, type=int)
+    posts = Blog.query.order_by(Blog.timestamp.desc()).all()
+    return render_template('index.html',quotes = quotes, posts=posts)
 
 
 
 @main.route('/info')
 def info():
     '''
-    Infor page
+    Information page
     '''
     return render_template('info.html')
 
 
 
-# Users profile page
+# Comenst view
 
 @main.route('/user/<uname>')
 def profile(uname):
