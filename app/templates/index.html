@@ -3,11 +3,13 @@
 {% block content %}
 
 <div class="jumbotron">
-        <div class="container">
-          <h1 class="display-3">Bloggy Blogg!</h1>
-          <p>This is your awesome  blogpost.</p>
-        </div>
+        <h1 class="display-4">Bloggy Blogs</h1>
+        <p class="lead">This is a personal blogging website where you can create and share your opinions and other users can read and comment on them. Additionally, there is a feature that displays random quotes to inspire users. </p>
+        <hr class="my-4">
+        <p>Come share our great posts. Add yours to the mix as well.</p>
+        <a class="btn btn-primary btn-sm" href="{{ url_for('main.info')}}" role="button">Learn more about this page</a>
       </div>
+
 
 
     <div class="container">
@@ -23,12 +25,30 @@
             </footer>
           </blockquote>
           <footer>
+            <br>
             <p>
             <a href="{{quote.permalink}}" target="_blank">Quote home</a>
             </p>
           </footer>
         </article>
       {% endfor %}
+    </div>
+    <div class="container">
+      {% for post in posts %}
+      <div class="card">
+        <div class="card-body">
+          <h2> <a class="card-title">{{post.title}}</a></h2>
+            <p>Posted by :{{post.author.username}}</p><br>
+          <p>Published on{{post.timestamp.strftime('%Y-%m-%d')}} </p>
+          <a class="btn btn-primary" href="{{url_for('blogs.post', post_id = post.id)}}">Read Post</a>
+          
+          </div>
+
+      </div>
+
+      {% endfor %}
 
     </div>
+
+
 {% endblock %}
