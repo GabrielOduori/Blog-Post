@@ -2,18 +2,32 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 
+
 {% block content %}
-<div class="jumbotron">
+<div class="container">
     <h2>{{title}}</h2>
-    <h4>Written by: {{post.author.username}}</h4>
+    
     <h4>Date published: {{post.timestamp.strftime('%B %d, %Y')}}</h4>
     <p>
         {{post.body}}
 
     </p>
+    <div>
+      <a href="{{ url_for('.post', post_id=post.id) }}">Comment
+      
+          
+
+          <span class="label label-primary">
+              {{ post.comments.count() }} Comments
+          </span>
+      
+      </a>
+
+    </div>
 
     {% if post.author == current_user %}
     <div>
+
         <a href="{{url_for('blogs.update', post_id = post.id)}}">Update</a>
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_post">Delete</button>
     </div>
@@ -31,7 +45,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>Confirm if you want to delete post!</p>
+              <p>Confirm if you want to the delete post!</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
