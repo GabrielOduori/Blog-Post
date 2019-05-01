@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap
 from config import config_options
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_moment import Moment
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
@@ -15,6 +16,7 @@ db = SQLAlchemy()
 def create_app(config_name):
     
     app = Flask(__name__)
+    moment = Moment(app)
     
     #Creating app configurations
     
@@ -32,7 +34,7 @@ def create_app(config_name):
     from app.blogs import blogs as blogs_blueprint
     app.register_blueprint(main_blueprint)
     app.register_blueprint(auth_blueprint,url_prefix='/auth')
-    app.register_blueprint(blogs_blueprint, url_prefix = '/blog')
+    app.register_blueprint(blogs_blueprint, url_prefix = '/')
     
     
     return app
