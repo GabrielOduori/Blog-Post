@@ -6,4 +6,13 @@ from wtforms.validators import DataRequired
 class PostForm(FlaskForm):
     title = StringField('Title',validators=[DataRequired()])
     body = TextAreaField('Text',validators=[DataRequired()])
-    submit = SubmitField("Post")
+    submit = SubmitField("Submit")
+
+
+class CommentForm(FlaskForm):
+    body = TextAreaField('Text',validators=[DataRequired()])
+    submit = SubmitField("Submit")
+
+
+
+
