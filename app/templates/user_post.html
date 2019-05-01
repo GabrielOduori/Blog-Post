@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+	<div class = "jumbotron">
+		<div align= 'center'>
+			<h1>Welcome to the page for {{current_user.username}}</h1>
+
+		</div>
+	</div>
+
+{% for post in posts %}
+
+<h2><a href="{{url_for('blog_posts.blog_post', blog_post_id = post.id)}}">{{post.title}}</a></h2>
+Post Author: <a href="{{url_for('users.user_post', username = post.author.username)}}">{{post.author.username}}</a>
+
+<p class = 'text-muted'>Published on : {{post.timestamp.strftime("%Y-%m-%d")}}</p>
+<br>
+<p>{{post.body}}</p>
+<br>
+{% endfor %}
+</div>
+
+
+{% endblock %}
