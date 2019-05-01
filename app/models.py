@@ -27,6 +27,8 @@ class User(UserMixin,db.Model):
 
     # Relationship with the Blog Post
     posts = db.relationship('Blog', backref = 'author', lazy = "dynamic")
+     # Relationship with the Comments 
+    comments = db.relationship('Comment', backref='author', lazy='dynamic')
 
     def __init__(self,email, username, password):
         self.email = email
@@ -53,6 +55,9 @@ class Blog(db.Model):
     timestamp = db.Column(db.DateTime, index=True, nullable = False, default=datetime.utcnow)
     title = db.Column(db.String(120), nullable=False)
     body = db.Column(db.Text, nullable = False)
+
+    # Relationship with the Comments 
+    comments = db.relationship('Comment', backref='blogs', lazy='dynamic')
     
     def __init__(self,title, body, user_id):
         self.title = title
@@ -62,6 +67,17 @@ class Blog(db.Model):
     def __repr__(self):
         return f"POST ID:{self.id} -- Date: {self.timestamp}"    
 
+class Comment(db.Model):
+    __tablename__='comments'
+    # users = db.relationship(User)
+    # blog = db.relationship(Blog)
+
+    id  = db.Column(db.Integer, primary_key = True)
+    body = db.Column(db.String)
+    timestamp = db.Column(db.DateTime, default = datetime.utcnow)
+    author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    blog_id = db.Column(db.Integer, db.ForeignKey("blogs.id"))
+    
 
 class Quote:
     def __init__(self,id, author, quote, permalink):
