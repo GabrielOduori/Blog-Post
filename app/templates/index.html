@@ -39,7 +39,7 @@
         <div class="card-body">
           <h3> <a class="card-title">{{post.title}}</a></h3>
             <p>Posted by :{{post.author.username}}</p><br>
-          <p>Published on{{post.timestamp.strftime('%Y-%m-%d')}} </p>
+          <p>Published: {{ moment(post.timestamp).fromNow() }} </p>
           <a class="btn btn-primary" href="{{url_for('blogs.post', post_id = post.id)}}">Read Post</a>
           
           </div>
