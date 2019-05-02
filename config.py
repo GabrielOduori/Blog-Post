@@ -1,7 +1,8 @@
 import os
 
 class Config:
-    SECRET_KEY=os.environ.get('SECRET_KEY')
+    SECRET_KEY='Ghdks87PlsxCvTx'
+    # SECRET_KEY=os.environ.get('SECRET_KEY')
     QUOTES_URL = 'http://quotes.stormconsultancy.co.uk/random.json'
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:postgres@localhost/bloglist'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
