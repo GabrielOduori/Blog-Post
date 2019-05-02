@@ -91,7 +91,7 @@ class CommentTest(unittest.TestCase):
         self.assertTrue(len(got_comments) == 1)
 
 
-class QuoteTest(self):
+class QuoteTest(unittest.TestCase):
     pass
 
 
