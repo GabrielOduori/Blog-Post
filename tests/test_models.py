@@ -92,6 +92,7 @@ class CommentTest(unittest.TestCase):
 
 
 class QuoteTest(self):
+    pass
 
 
 if __name__ == '__main__':
