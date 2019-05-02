@@ -64,7 +64,7 @@ $ pip install -r requirements.txt
         $ python3.7 manage.py tests
 
 ## Known bugs
-* The email functionality is currently not running on the test platform     
+* The commet functionality is currently not routing as expected and will be fixed in the next iteration.    
         
 
 ## License information
