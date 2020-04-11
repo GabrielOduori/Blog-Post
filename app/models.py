@@ -1,5 +1,5 @@
 #Models.py file
-
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from . import login_manager
@@ -24,11 +24,25 @@ class User(UserMixin,db.Model):
     email = db.Column(db.String(100), unique = True, index =True)
     username = db.Column(db.String(72), unique=True,index=True)
     password_hash = db.Column(db.String(255))
+    confirmed =db.Column(db.Boolean, default = False)
 
     # Relationship with the Blog Post
     posts = db.relationship('Blog', backref = 'author', lazy = "dynamic")
      # Relationship with the Comments 
     comments = db.relationship('Comment', backref='author', lazy='dynamic')
+
+    def generate_confirmation_token(self,expiration=3600):
+        """
+        We would like to send out a confirmation email to make sure the 
+        email account provided is legit and that the user can again confirm
+        their registration.
+        """
+        return s.dumps({'confirm':self.id}).decode('utf-8')
+
+
+    
+
+
 
     def __init__(self,email, username, password):
         self.email = email
